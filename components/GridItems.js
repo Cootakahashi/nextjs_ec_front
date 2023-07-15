@@ -1,19 +1,6 @@
 import Link from "next/link";
-export default function GridItems() {
-  const sections = [
-    {
-      title: "New Arrivals",
-      images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
-    },
-    {
-      title: "Ranking",
-      images: Array.from(
-        { length: 12 },
-        (_, i) => `/cloths/square/${i + 1}.png`
-      ),
-    },
-  ];
 
+export default function GridItems({ sections }) {
   return (
     <>
       {/* <div className="text-center py-16 ">

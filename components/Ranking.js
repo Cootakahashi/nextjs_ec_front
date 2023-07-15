@@ -1,19 +1,4 @@
-export default function Ranking() {
-  const sections = [
-    {
-      title: "New Arrivals",
-      images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
-    },
-    {
-      title: "Ranking",
-      images: Array.from(
-        { length: 4 },
-        (_, i) => `/cloths/square/${i + 1}.png`
-      ),
-    },
-
-    // Add more sections as needed
-  ];
+export default function Ranking({ sections }) {
   return (
     <div className="your-class py-20">
       <header className="w-full text-slate-200 flex justify-center text-xs md:text-sm font-medium	h-[51px]">

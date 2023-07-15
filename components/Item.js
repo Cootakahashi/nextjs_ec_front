@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-export default function Items() {
+
+export default function Items({ data }) {
   return (
     <>
-      {" "}
       <div className="text-2xl my-10">
-        <h1 className="font-bold  ">「GLAMOUR」Tシャツ</h1>
+        <h1 className="font-bold">{data.title}</h1>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -25,7 +25,7 @@ export default function Items() {
         <div className="relative">
           <Image
             className="object-cover"
-            src="/cloths/square/5.png"
+            src={data.images[0]}
             width={620}
             height={480}
           />
@@ -39,27 +39,22 @@ export default function Items() {
                 transform: "rotate(-45deg)",
               }}
             >
-              {" "}
               SOLD OUT
             </span>
           </div>
         </div>
         <Image
           className="object-cover h-40 ml-5"
-          src="/cloths/square/5.png"
+          src={data.images[1]}
           width={140}
           height={240}
         />
       </div>
       <div>
-        <p className="whitespace-pre-line mt-8 font-light		">
-          {`Tシャツは、着心地と合わせやすさが決め手。\n
-            普段使いや、軽いスポーツ時にも使えますし、年間を通してお使いいただけるアイテムのひとつです。定番ゆえに\n様々なカラーや柄物のアイテムを複数お持ちの方も多いのではないでしょうか。\n
-
-            上質なコットン生地を使用したEGO-Tは、肌触りが良くタフなので、ヘビロテアイテムとしてオススメ`}
+        <p className="whitespace-pre-line mt-8 font-light">
+          Tシャツは、着心地と合わせやすさが決め手。普段使いや、軽いスポーツ時にも使えますし、年間を通してお使いいただけるアイテムのひとつです。定番ゆえに様々なカラーや柄物のアイテムを複数お持ちの方も多いのではないでしょうか。上質なコットン生地を使用したEGO-Tは、肌触りが良くタフなので、ヘビロテアイテムとしてオススメです。
         </p>
         <div>
-          {" "}
           <span className="flex icons mt-3">
             <a className="text-slate-800">
               <svg
@@ -127,10 +122,9 @@ export default function Items() {
         <div className="pricebox border pt-12 pb-10 px-16 w-[400px] mt-8">
           <span className="font-bold text-2xl mr-3">¥2500</span>
           <span className="font-extralight">(税別)</span>
-          <p className="font-extralight	mt-5">在庫　在庫有り</p>
-          <button className="bg-cyan-300	text-white px-16 py-4 text-sm mt-5 hover:bg-cyan-700 transition-all">
+          <p className="font-extralight mt-5">在庫　在庫あり</p>
+          <button className="bg-cyan-300 text-white px-16 py-4 text-sm mt-5 hover:bg-cyan-700 transition-all">
             <Link href="https://buy.stripe.com/fZeeXaf1X3xF0JGbIU" passHref>
-              {" "}
               今すぐ購入
             </Link>
           </button>

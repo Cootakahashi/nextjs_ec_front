@@ -16,7 +16,7 @@ import Top from "@/components/Top";
 import Item from "@/components/Item";
 import SideBar from "@/components/SideBar";
 
-export default function Home() {
+export default function Home({ data, SideSections }) {
   const squareImages = Array.from(
     { length: 14 },
     (_, i) => `/canva/square/${i + 1}.png`
@@ -40,10 +40,10 @@ export default function Home() {
       <Header />
       <div className="grid grid-cols-7 mt-20">
         <div className="col-span-2 ml-10">
-          <SideBar />
+          <SideBar sections={SideSections} />
         </div>
         <div className="col-span-5">
-          <Item />
+          <Item data={data} />
         </div>
       </div>
       <Footer />
@@ -53,4 +53,51 @@ export default function Home() {
       {/* <Grid /> */}
     </div>
   );
+}
+export async function getStaticProps() {
+  const data = {
+    // データの例
+    title: "GLAMOUR Tシャツ",
+    images: [
+      "/cloths/square/5.png",
+      "/cloths/square/5.png",
+      "/cloths/square/5.png",
+    ],
+    // その他のデータ...
+  };
+
+  const SideSections = [
+    {
+      title: "CATEGORYS",
+      images: [
+        "/cloths/square/11.png",
+        "/cloths/square/7.png",
+        "/cloths/square/6.png",
+        "/cloths/square/5.png",
+      ],
+    },
+    {
+      title: "NEW ARRIVAL",
+      images: [
+        "/cloths/square/13.png",
+        "/cloths/square/14.png",
+        "/cloths/square/15.png",
+      ],
+    },
+    {
+      title: "RECCOMEND",
+      images: [
+        "/cloths/square/9.png",
+        "/cloths/square/6.png",
+        "/cloths/square/19.png",
+      ],
+    },
+  ];
+
+  return {
+    props: {
+      data,
+      SideSections,
+    },
+  };
 }

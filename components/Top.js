@@ -1,14 +1,16 @@
 import Image from "next/image";
-export default function Top() {
+
+export default function Top({ image }) {
   return (
     <>
       <div className="flex justify-center items-center relative h-screen -translate-y-10">
         <div className="relative">
           <Image
             className="object-cover"
-            src="/cloths/wide/5.png"
-            width={1020}
-            height={480}
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
           />
           <div className="absolute top-0 left-0 flex justify-center items-center text-white text-sm bg-teal-500 w-40 h-[55px] ">
             ALL ITEM

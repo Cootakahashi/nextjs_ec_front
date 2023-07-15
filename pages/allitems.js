@@ -16,7 +16,12 @@ import Top from "@/components/Top";
 import GridItems from "@/components/GridItems";
 import SideBar from "@/components/SideBar";
 
-export default function Home() {
+export default function Home({
+  GridBrandSections,
+  SideSections,
+  GridSections,
+  image,
+}) {
   const squareImages = Array.from(
     { length: 14 },
     (_, i) => `/canva/square/${i + 1}.png`
@@ -38,18 +43,18 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <Top />
+      <Top image={image} />
       <div className="ml-40">
         <div className="grid grid-cols-8 ">
           <div className="col-span-2">
-            <SideBar />
+            <SideBar sections={SideSections} />
           </div>
           <div className="col-span-6 ">
-            <GridItems />
+            <GridItems sections={GridSections} />
           </div>
         </div>
       </div>
-      <GridBrand />
+      <GridBrand sections={GridBrandSections} />
 
       <Footer />
       {/* <SearchBar /> */}
@@ -57,4 +62,107 @@ export default function Home() {
       {/* <Grid /> */}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const GridBrandSections = [
+    {
+      title: "RANKING",
+      subtitle: "ランキングから選ぶ",
+      image: "/cloths/wide/5.png",
+      colSpan: 2,
+      rowSpan: 1,
+    },
+    {
+      title: "BLOG",
+      subtitle: "EGO.Tのアイテム情報満載",
+      image: "/cloths/wide/15.png",
+      colSpan: 2,
+      rowSpan: 1,
+    },
+    {
+      title: "50%OFF",
+      subtitle: "売り切れ御免",
+      image: "/cloths/wide/11.png",
+      colSpan: 1,
+      rowSpan: 1,
+    },
+    {
+      title: "LIMITED",
+      subtitle: "限定アイテム",
+      image: "/cloths/wide/20.png",
+      colSpan: 1,
+      rowSpan: 1,
+    },
+    {
+      title: "STAFF厳選Tシャツ",
+      subtitle: "オススメアイテム",
+      image: "/cloths/wide/16.png",
+      colSpan: 1,
+      rowSpan: 1,
+    },
+    {
+      title: "女子に来てほしい!",
+      subtitle: "可愛いTシャツ特集",
+      image: "/cloths/wide/13.png",
+      colSpan: 1,
+      rowSpan: 1,
+    },
+  ];
+
+  const SideSections = [
+    {
+      title: "CATEGORYS",
+      images: [
+        "/cloths/square/11.png",
+        "/cloths/square/7.png",
+        "/cloths/square/6.png",
+        "/cloths/square/5.png",
+      ],
+    },
+    {
+      title: "NEW ARRIVAL",
+      images: [
+        "/cloths/square/13.png",
+        "/cloths/square/14.png",
+        "/cloths/square/15.png",
+      ],
+    },
+    {
+      title: "RECCOMEND",
+      images: [
+        "/cloths/square/9.png",
+        "/cloths/square/6.png",
+        "/cloths/square/19.png",
+      ],
+    },
+  ];
+
+  const GridSections = [
+    {
+      title: "New Arrivals",
+      images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
+    },
+    {
+      title: "Ranking",
+      images: Array.from(
+        { length: 12 },
+        (_, i) => `/cloths/square/${i + 1}.png`
+      ),
+    },
+  ];
+  const image = {
+    src: "/cloths/wide/5.png",
+    alt: "Image 1",
+    width: 1020,
+    height: 480,
+  };
+  return {
+    props: {
+      GridBrandSections,
+      SideSections,
+      GridSections,
+      image,
+    },
+  };
 }

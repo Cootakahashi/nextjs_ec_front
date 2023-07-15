@@ -13,7 +13,14 @@ import GridSecond from "@/components/GridSecond";
 import GridBrand from "@/components/GridBrand";
 import Footer from "@/components/FooterMenu";
 
-export default function Home() {
+export default function Home({
+  mainSections,
+  itemsSections,
+  gridImages,
+  Rankingsections,
+  GridSecontdSections,
+  GridBrandSections,
+}) {
   const squareImages = Array.from(
     { length: 14 },
     (_, i) => `/canva/square/${i + 1}.png`
@@ -37,12 +44,12 @@ export default function Home() {
       <Header />
       {/* <SearchBar /> */}
 
-      <Main />
-      <Grid />
-      <Ranking />
-      <Items />
-      <GridSecond />
-      <GridBrand />
+      <Main sections={mainSections} />
+      <Grid images={gridImages} />
+      <Ranking sections={Rankingsections} />
+      <Items sections={itemsSections} />
+      <GridSecond sections={GridSecontdSections} />
+      <GridBrand sections={GridBrandSections} />
       <Footer />
       {/* <div className="p-20 ml-40 translate-x-20">
         <ProductSlider products={products} />
@@ -60,4 +67,123 @@ export default function Home() {
       <FeaturedProducts /> */}
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const gridImages = Array.from(
+    { length: 4 },
+    (_, i) => `/cloths/square/${i + 5}.png`
+  );
+
+  const mainSections = [
+    {
+      title: "New Arrivals",
+      images: Array.from({ length: 5 }, (_, i) => `/canva/middle/${i + 1}.png`),
+    },
+    {
+      title: "Restocked",
+      images: Array.from({ length: 5 }, (_, i) => `/cloths/wide/${i + 1}.png`),
+    },
+    {
+      title: "Ranking",
+      images: Array.from({ length: 5 }, (_, i) => `/cloths/wide/${i + 1}.png`),
+    },
+    // Add more sections as needed
+  ];
+
+  const itemsSections = [
+    {
+      title: "New Arrivals",
+      images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
+    },
+    {
+      title: "Ranking",
+      images: Array.from(
+        { length: 8 },
+        (_, i) => `/cloths/square/${i + 1}.png`
+      ),
+    },
+  ];
+
+  const Rankingsections = [
+    {
+      title: "New Arrivals",
+      images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
+    },
+    {
+      title: "Ranking",
+      images: Array.from(
+        { length: 4 },
+        (_, i) => `/cloths/square/${i + 1}.png`
+      ),
+    },
+  ];
+
+  const GridSecontdSections = [
+    {
+      title: "GridSecond",
+      images: [
+        "/cloths/wide/5.png",
+        "/cloths/wide/15.png",
+        "/cloths/wide/11.png",
+        "/cloths/wide/20.png",
+        "/cloths/wide/16.png",
+        "/cloths/wide/13.png",
+      ],
+    },
+  ];
+  const GridBrandSections = [
+    {
+      title: "RANKING",
+      subtitle: "ランキングから選ぶ",
+      image: "/cloths/wide/5.png",
+      colSpan: 2,
+      rowSpan: 1,
+    },
+    {
+      title: "BLOG",
+      subtitle: "EGO.Tのアイテム情報満載",
+      image: "/cloths/wide/15.png",
+      colSpan: 2,
+      rowSpan: 1,
+    },
+    {
+      title: "50%OFF",
+      subtitle: "売り切れ御免",
+      image: "/cloths/wide/11.png",
+      colSpan: 1,
+      rowSpan: 1,
+    },
+    {
+      title: "LIMITED",
+      subtitle: "限定アイテム",
+      image: "/cloths/wide/20.png",
+      colSpan: 1,
+      rowSpan: 1,
+    },
+    {
+      title: "STAFF厳選Tシャツ",
+      subtitle: "オススメアイテム",
+      image: "/cloths/wide/16.png",
+      colSpan: 1,
+      rowSpan: 1,
+    },
+    {
+      title: "女子に来てほしい!",
+      subtitle: "可愛いTシャツ特集",
+      image: "/cloths/wide/13.png",
+      colSpan: 1,
+      rowSpan: 1,
+    },
+  ];
+  return {
+    props: {
+      mainSections,
+      itemsSections,
+      gridImages,
+      Rankingsections,
+      GridSecontdSections,
+      GridBrandSections,
+    },
+  };
 }

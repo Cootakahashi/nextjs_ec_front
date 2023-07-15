@@ -1,18 +1,18 @@
 import Link from "next/link";
-export default function Items() {
-  const sections = [
-    {
-      title: "New Arrivals",
-      images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
-    },
-    {
-      title: "Ranking",
-      images: Array.from(
-        { length: 8 },
-        (_, i) => `/cloths/square/${i + 1}.png`
-      ),
-    },
-  ];
+export default function Items({ sections }) {
+  // const sections = [
+  //   {
+  //     title: "New Arrivals",
+  //     images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
+  //   },
+  //   {
+  //     title: "Ranking",
+  //     images: Array.from(
+  //       { length: 8 },
+  //       (_, i) => `/cloths/square/${i + 1}.png`
+  //     ),
+  //   },
+  // ];
   return (
     <>
       <div className="text-center py-8 ">

@@ -1,6 +1,6 @@
 // import logo from "/logo/transparent.png"; // ロゴのパスを適切に設定してください
 import Image from "next/image";
-export default function GridBrand() {
+export default function GridBrand({ sections }) {
   return (
     <div className="grid grid-cols-6 mx- gap-2 mt-20">
       <header className="col-span-6 text-center text-md font-bold text-slate-100 bg-black translate-y-2 h-[55px] flex items-center justify-center font-light	">

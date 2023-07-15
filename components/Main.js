@@ -6,23 +6,7 @@ import Link from "next/link";
 // install Swiper modules
 SwiperCore.use([Autoplay, Navigation, Pagination, Scrollbar, A11y]);
 
-export default function Main() {
-  const sections = [
-    {
-      title: "New Arrivals",
-      images: Array.from({ length: 5 }, (_, i) => `/canva/middle/${i + 1}.png`),
-    },
-    {
-      title: "Restocked",
-      images: Array.from({ length: 5 }, (_, i) => `/cloths/wide/${i + 1}.png`),
-    },
-    {
-      title: "Ranking",
-      images: Array.from({ length: 5 }, (_, i) => `/cloths/wide/${i + 1}.png`),
-    },
-    // Add more sections as needed
-  ];
-
+export default function Main({ sections }) {
   return (
     <main className="bg-gray-100">
       {/* Carousel Section */}
