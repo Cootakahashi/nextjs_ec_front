@@ -9,8 +9,8 @@ export default function GridItems({ sections }) {
         <h2>新着アイテム</h2>{" "}
       </div> */}
       {sections.slice(1).map((section, sectionIndex) => (
-        <div key={sectionIndex} className="w-[715px]">
-          <div className="grid grid-cols-3 justify-items-center  gap- ">
+        <div key={sectionIndex} className="md:w-[715px]">
+          <div className="grid grid-cols-2 md:grid-cols-3 justify-items-center  gap-3 md:gap-0 ">
             {section.images.slice(0, 12).map((image, index) => (
               <div
                 key={index}
@@ -19,7 +19,7 @@ export default function GridItems({ sections }) {
                 <Link href="/item" passHref>
                   <div className="overflow-hidden">
                     <img
-                      className="w-[210px] h-[290px] hover:scale-125 transition-all duration-500"
+                      className="h-[200px] md:w-[210px] md:h-[290px] hover:scale-125 transition-all duration-500"
                       src={image}
                       alt={`${section.title} product ${index + 1}`}
                     />

@@ -2,8 +2,8 @@
 import Image from "next/image";
 export default function GridBrand({ sections }) {
   return (
-    <div className="grid grid-cols-6 mx- gap-2 mt-20">
-      <header className="col-span-6 text-center text-md font-bold text-slate-100 bg-black translate-y-2 h-[55px] flex items-center justify-center font-light	">
+    <div className="grid grid-cols-6 mx- gap-2 mt-10 md:mt-32">
+      <header className="col-span-6 text-center text-md font-bold text-slate-100 bg-black translate-y-2 h-[51px] md:h-[55px] flex items-center justify-center font-light	">
         <a className="mr-3 text-slate-100">
           <svg
             fill="none"
@@ -68,8 +68,8 @@ export default function GridBrand({ sections }) {
         <Image
           src="/logo/transparent.png"
           alt="Logo"
-          width={150}
-          height={250}
+          width={130}
+          height={130}
         />{" "}
       </div>
       <p className="col-span-full text-center -translate-y-5 text-xs mb-5">

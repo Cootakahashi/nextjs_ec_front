@@ -16,7 +16,7 @@ export default function Main({ sections }) {
           slidesPerView={1}
           pagination={{ clickable: true }}
           autoplay={{
-            delay: 3000,
+            delay: 5000,
             disableOnInteraction: false,
           }}
         >
@@ -31,16 +31,16 @@ export default function Main({ sections }) {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="absolute w-60 md:w-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl md:text-3xl z-50 text-center">
-          <h1 className="font-bold text-white fadeIn1">
-            さまざまなシーンでT-シャツを選ぶ
+        <div className="absolute w-80  md:w-auto top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl md:text-3xl z-50 text-center">
+          <h1 className="font-bold text-white fadeIn1 md:whitespace-normal whitespace-pre-line  ">
+            {`さまざまなシーンで \n T-シャツを選ぶ`}
           </h1>
           <p className="text-base	md:leading-9 mt-3 md:mt-5 text-white fadeIn2 font-light">
             Only1は、優れた品質と革新的なデザインで知られています。製品は長持ちし、ファッションのトレンドを反映している
             「Only 1」の公式販売サイトです
           </p>
 
-          <button className="bg-teal-400 text-white w-52 md:w-auto h-[50px] md:h-auto md:px-8 md:py-3 text-base mt-5 fadeIn3 hover:bg-teal-600 transition-all">
+          <button className="bg-teal-500 hover:bg-teal-600  text-white w-52 md:w-auto h-[50px] md:h-auto md:px-8 md:py-3 text-base mt-5 fadeIn3 hover:bg-teal-600 transition-all">
             <Link href="/allitems" passHref>
               Womens アイテム
             </Link>
@@ -48,14 +48,16 @@ export default function Main({ sections }) {
         </div>
       </div>
 
-      <div className="blogs md:px-10 py-2">
+      <div className="blogs md:px-28 py-1">
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           // pagination={{ clickable: true }}
-          spaceBetween={80}
+          spaceBetween={1000}
           slidesPerView={1}
+          loop={true} // ここにloopプロパティを追加します
+          speed={1900} // ここにspeedプロパティを追加します
           autoplay={{
-            delay: 3000,
+            delay: 3500,
             disableOnInteraction: false,
           }}
           // onSlideChange={() => console.log("slide change")}
@@ -64,9 +66,9 @@ export default function Main({ sections }) {
           {sections[0].images.map((image, index) => (
             <SwiperSlide key={index}>
               <div className="flex ">
-                <div className="w-full md:w-1/2 flex ">
+                <div className="w-full md:w-1/2 flex ml-8 ">
                   {" "}
-                  <div className="w-[55px] h-[55px] mt-3 rounded-full overflow-hidden translate-x-5 md:translate-x-0 ">
+                  <div className="w-[62px] h-[62px] mt-3 rounded-full overflow-hidden translate-x-5 md:translate-x-0 ">
                     <img
                       className="w-full h-full object-cover"
                       src={image}

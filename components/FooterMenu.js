@@ -1,20 +1,26 @@
 import Image from "next/image";
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt- bg-gray-200 md:px-20 md:h-96 text-sm">
-        <div className="md:border-s-2 border-slate-300 py-20 px-5">
-          <h2 className="font-bold text-teal-400 ">ITEM</h2>
-          <ul className="flex flex-col gap-2 font-light mt-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt- bg-gray-100 md:px-20 md:h-96 text-sm px-5 py-10">
+        <div className="md:border-s-2 border-slate-300 md:py-20 px-5">
+          <h2 className="font-bold text-teal-400 text-lg">ITEM</h2>
+          <ul className="flex flex-col gap-2 font-light mt-3 text-xs">
             <li>MENS</li>
             <li>LADIES</li>
             <li>UNISEX</li>
             <li>LIMITED</li>
           </ul>
         </div>
-        <div className="md:border-s-2 border-slate-300 py-20 px-5">
-          <h2 className="font-bold text-teal-400">MENU</h2>
-          <ul className="flex flex-col gap-2 font-light mt-3">
+        <div className="md:border-s-2 border-slate-300 md:py-20 px-5">
+          <h2 className="font-bold text-teal-400 text-lg">MENU</h2>
+          <ul className="flex flex-col gap-2 font-light mt-3 text-xs">
             <li>お知らせ</li>
             <li>アバウト</li>
             <li>ランキング</li>
@@ -22,9 +28,9 @@ export default function Footer() {
             <li>ブログ</li>
           </ul>
         </div>
-        <div className="md:border-s-2 border-slate-300 py-20 px-5">
-          <h2 className="font-bold text-teal-400">ACCOUNT</h2>
-          <ul className="flex flex-col gap-2 font-light mt-3">
+        <div className="md:border-s-2 border-slate-300 md:py-20 px-5">
+          <h2 className="font-bold text-teal-400 text-ls">ACCOUNT</h2>
+          <ul className="flex flex-col gap-2 font-light mt-3 text-xs">
             <li>会員登録</li>
             <li>マイ アカウント</li>
             <li>ログイン</li>
@@ -32,9 +38,9 @@ export default function Footer() {
             <li>チェックアウトする</li>
           </ul>
         </div>
-        <div className="md:border-s-2 border-slate-300 py-20 px-5">
-          <h2 className="font-bold text-teal-400">SUPPORT</h2>
-          <ul className="flex flex-col gap-2 font-light mt-3">
+        <div className="md:border-s-2 border-slate-300 md:py-20 px-5">
+          <h2 className="font-bold text-teal-400 text-ls">SUPPORT</h2>
+          <ul className="flex flex-col gap-2 font-light mt-3 text-xs">
             <li>ご利用ガイド</li>
             <li>ご利用規約</li>
             <li>特定商取引法に関する表示</li>
@@ -43,8 +49,8 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <footer className="flex items-center justify-center justify-items-stretch text-slate-100 body-font bg-black md:h-16 h-12">
-        <span className="flex icons mr-aut md:ml-40 md:-translate-x-80 -translate-y-16 bg-black translate-x-20 md:translate-y-0 px-3 py-1">
+      <footer className="flex items-center justify-cente justify-items-stretch text-slate-100 body-font bg-black md:h-16 h-10">
+        <span className="flex icons  md:translate-x-36  -translate-y-8 bg-black md:translate-x-0 translate-x- md:translate-y-0 py-1 px-3">
           <a className="text-slate-100">
             <svg
               fill="currentColor"
@@ -101,7 +107,7 @@ export default function Footer() {
             </svg>
           </a>
         </span>
-        <p className="flex justify-center  text-xs text-text-slate-100 sm:mt-0 mx-auto text-center -translate-x-16 md:-translate-x-0">
+        <p className="flex mx-auto text-xs text-text-slate-100 sm:mt-0 text-center md:-translate-x-0">
           © 2023 —
           <a
             href="https://twitter.com/"
@@ -112,6 +118,29 @@ export default function Footer() {
             @Only1 Tokyo Japan
           </a>
         </p>
+        <button
+          className="flex justify-center items-center text-slate-100 bg-teal-500 hover:bg-teal-600 transition-all h-full w-16 "
+          onClick={scrollToTop}
+          style={{
+            bottom: "20px",
+            right: "20px",
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-5 h-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4.5 15.75l7.5-7.5 7.5 7.5"
+            />
+          </svg>
+        </button>
       </footer>
     </>
   );

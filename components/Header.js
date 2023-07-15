@@ -6,7 +6,7 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
-    <header className="w-full bg-white bg-gray-200 flex justify-between h-[70px] text-sm font-light	border">
+    <header className="w-full bg-white bg-gray-200 flex justify-between h-16 md:h-[70px] text-sm font-light	border">
       <Image
         src={logo}
         alt="Logo"

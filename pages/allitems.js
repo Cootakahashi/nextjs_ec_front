@@ -42,14 +42,15 @@ export default function Home({
 
   return (
     <div>
+      <SearchBar />
       <Header />
       <Top image={image} />
-      <div className="ml-40">
-        <div className="grid grid-cols-8 ">
-          <div className="col-span-2">
+      <div className="md:ml-40 mx-3 md:mx-auto">
+        <div className="md:grid md:grid-cols-8 ">
+          <div className="md:col-span-2 hidden md:block">
             <SideBar sections={SideSections} />
           </div>
-          <div className="col-span-6 ">
+          <div className="md:col-span-6 ">
             <GridItems sections={GridSections} />
           </div>
         </div>
@@ -155,7 +156,7 @@ export async function getStaticProps() {
     src: "/cloths/wide/5.png",
     alt: "Image 1",
     width: 1020,
-    height: 480,
+    height: 580,
   };
   return {
     props: {

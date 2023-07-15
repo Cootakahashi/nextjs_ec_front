@@ -18,7 +18,7 @@ export default function Home({
   itemsSections,
   gridImages,
   Rankingsections,
-  GridSecontdSections,
+  GridSecondSections,
   GridBrandSections,
 }) {
   const squareImages = Array.from(
@@ -41,14 +41,13 @@ export default function Home({
 
   return (
     <div>
+      <SearchBar />
       <Header />
-      {/* <SearchBar /> */}
-
       <Main sections={mainSections} />
       <Grid images={gridImages} />
       <Ranking sections={Rankingsections} />
       <Items sections={itemsSections} />
-      <GridSecond sections={GridSecontdSections} />
+      <GridSecond sections={GridSecondSections} />
       <GridBrand sections={GridBrandSections} />
       <Footer />
       {/* <div className="p-20 ml-40 translate-x-20">
@@ -70,10 +69,14 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const gridImages = Array.from(
-    { length: 4 },
-    (_, i) => `/cloths/square/${i + 5}.png`
-  );
+  const gridImages = {
+    images: [
+      "/cloths/square/5.png",
+      "/cloths/wide/6.png",
+      "/cloths/wide/7.png",
+      "/cloths/wide/8.png",
+    ],
+  };
 
   const mainSections = [
     {
@@ -93,15 +96,8 @@ export async function getStaticProps() {
 
   const itemsSections = [
     {
-      title: "New Arrivals",
-      images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
-    },
-    {
       title: "Ranking",
-      images: Array.from(
-        { length: 8 },
-        (_, i) => `/cloths/square/${i + 1}.png`
-      ),
+      images: Array.from({ length: 8 }, (_, i) => `/items/${i + 2}.png`),
     },
   ];
 
@@ -112,14 +108,11 @@ export async function getStaticProps() {
     },
     {
       title: "Ranking",
-      images: Array.from(
-        { length: 4 },
-        (_, i) => `/cloths/square/${i + 1}.png`
-      ),
+      images: Array.from({ length: 4 }, (_, i) => `/items/${i + 17}.png`),
     },
   ];
 
-  const GridSecontdSections = [
+  const GridSecondSections = [
     {
       title: "GridSecond",
       images: [
@@ -182,7 +175,7 @@ export async function getStaticProps() {
       itemsSections,
       gridImages,
       Rankingsections,
-      GridSecontdSections,
+      GridSecondSections,
       GridBrandSections,
     },
   };

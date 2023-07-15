@@ -1,34 +1,23 @@
 import Link from "next/link";
 export default function Items({ sections }) {
-  // const sections = [
-  //   {
-  //     title: "New Arrivals",
-  //     images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
-  //   },
-  //   {
-  //     title: "Ranking",
-  //     images: Array.from(
-  //       { length: 8 },
-  //       (_, i) => `/cloths/square/${i + 1}.png`
-  //     ),
-  //   },
-  // ];
   return (
     <>
-      <div className="text-center py-8 ">
+      <div className="text-center md:pt-20 md:pb-12 py-10">
         {" "}
-        <h1 className="text-2xl font-extrabold	py-2">NEW ARRIVAL</h1>
-        <h2 className="text-sm">新着アイテム</h2>{" "}
+        <h1 className="text-xl md:text-4xl font-bold		py-2 tracking-wider	">
+          NEW ARRIVAL
+        </h1>
+        <h2 className="text-sm font-light tracking-wider		">新着アイテム</h2>{" "}
       </div>
-      {sections.slice(1).map((section, sectionIndex) => (
-        <div key={sectionIndex} className="md:mx-16">
-          <div className="grid md:grid-cols-4 grid-cols-2 gap-4 md:gap-2 mx-2 justify-items-center  gap- ">
+      {sections.map((section, sectionIndex) => (
+        <div key={sectionIndex} className="md:mx-36 mx-5">
+          <div className="grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 justify-items-center  ">
             {section.images.slice(0, 8).map((image, index) => (
               <div key={index} className="relative overflow-hidden ">
                 <div className="text-slate-900 hover:text-slate-400 transition-all duration-500">
                   <div className="overflow-hidden">
                     <img
-                      className="w-[180px] h-[180px] md:h-[225px] hover:scale-125 transition-all duration-500"
+                      className="md:w-[235px] md:h-[300px] hover:scale-125 transition-all duration-500"
                       src={image}
                       alt={`${section.title} product ${index + 1}`}
                     />
