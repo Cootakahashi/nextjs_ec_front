@@ -1,5 +1,6 @@
 // import logo from "/logo/transparent.png"; // ロゴのパスを適切に設定してください
 import Image from "next/image";
+import Link from "next/link";
 export default function GridBrand({ sections }) {
   return (
     <div className="grid grid-cols-6 mx- gap-2 mt-10 md:mt-32">
@@ -65,12 +66,14 @@ export default function GridBrand({ sections }) {
         </div>
       </div>
       <div className="col-span-full flex justify-center items-center">
-        <Image
-          src="/logo/transparent.png"
-          alt="Logo"
-          width={130}
-          height={130}
-        />{" "}
+        <Link href="/" passHref>
+          <Image
+            src="/logo/transparent.png"
+            alt="Logo"
+            width={130}
+            height={130}
+          />{" "}
+        </Link>
       </div>
       <p className="col-span-full text-center -translate-y-5 text-xs mb-5">
         イケてる、オリジナルTシャツショップ Only1.

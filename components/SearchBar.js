@@ -1,7 +1,7 @@
 export default function SearchBar() {
   return (
     <div className="w-full bg-gray-200 md:font-extralight	">
-      <div className="flex items-center justify-between w-full max-w-m h-12 md:h-16 md:px-24 md:px-3 px-5 font-light	">
+      <div className="flex items-center justify-between w-full max-w-m h-12 md:h-16 md:px-24 px-5 font-light	">
         <div className="hidden md:block text-light text-xs md:text-sm whitespace-nowrap">
           さまざまなシーンでTシャツを遊ぶ。オリジナルTシャツショップ Only One.
         </div>

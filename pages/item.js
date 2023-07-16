@@ -15,6 +15,7 @@ import Footer from "@/components/FooterMenu";
 import Top from "@/components/Top";
 import Item from "@/components/Item";
 import SideBar from "@/components/SideBar";
+import ScrollCart from "@/components/AddCart";
 
 export default function Home({ data, SideSections }) {
   const squareImages = Array.from(
@@ -37,16 +38,21 @@ export default function Home({ data, SideSections }) {
 
   return (
     <div>
+      <SearchBar />
       <Header />
-      <div className="grid grid-cols-7 mt-20">
-        <div className="col-span-2 ml-10">
+      <div className="grid md:grid-cols-7 md:mt-20">
+        <div className="md:col-span-2 md:ml-10 row-start-2 md:row-start-1 md:block">
           <SideBar sections={SideSections} />
         </div>
-        <div className="col-span-5">
+        <div className="md:col-span-5">
           <Item data={data} />
         </div>
       </div>
-      <Footer />
+      <ScrollCart />
+      <div className="mb-20">
+        {" "}
+        <Footer />
+      </div>
 
       {/* <SearchBar /> */}
 

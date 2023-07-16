@@ -3,15 +3,17 @@ import Image from "next/image";
 export default function Top({ image }) {
   return (
     <>
-      <div className="flex justify-center items-center relative mb-20 md:h-screen md:-translate-y-10">
-        <div className="md:relative">
+      <div className="flex justify-center items-center relative mb-10 md:mb-20 md:h-screen">
+        <div className="md:relative md:w-4/5">
           <Image
-            className="md:object-cover"
+            className=""
             src={image.src}
             alt={image.alt}
             width={image.width}
             height={image.height}
           />
+          <div className="absolute inset-0 bg-black bg-opacity-20" />
+
           <div className="absolute top-0 left-0 flex justify-center items-center text-white text-xs w-28 h-[39px] md:text-sm bg-teal-500 md:w-40 md:h-[55px]  ">
             ALL ITEM
           </div>

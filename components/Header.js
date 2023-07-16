@@ -1,29 +1,36 @@
 import { useState } from "react";
 import Image from "next/image";
 import logo from "../public/logo/transparent.png"; // ロゴのパスを適切に設定してください
-
+import Link from "next/link";
 export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <header className="w-full bg-white bg-gray-200 flex justify-between h-16 md:h-[70px] text-sm font-light	border">
-      <Image
-        src={logo}
-        alt="Logo"
-        width={70}
-        height={50}
-        className="md:ml-20"
-      />{" "}
+      <Link href="/" passHref>
+        <Image
+          src={logo}
+          alt="Logo"
+          width={70}
+          height={50}
+          className="md:ml-20"
+        />{" "}
+      </Link>
       <div className="hidden md:block">
-        <button className=" hover:bg-teal-300 transition-all h-full w-32 border-s-2 border-slate-200 ">
-          HOME
-        </button>
+        <Link href="/" passHref>
+          <button className=" hover:bg-teal-300 transition-all h-full w-32 border-s-2 border-slate-200 ">
+            HOME
+          </button>
+        </Link>
         <button className=" hover:bg-teal-300 transition-all h-full w-32 border-s-2 border-slate-200 ">
           ABOUT
         </button>
-        <button className=" hover:bg-teal-300 transition-all h-full w-32 border-s-2 border-slate-200 ">
-          ITEM
-        </button>
+        <Link href="/allitems" passHref>
+          <button className=" hover:bg-teal-300 transition-all h-full w-32 border-s-2 border-slate-200 ">
+            ITEM
+          </button>{" "}
+        </Link>
+
         <button className="hover:bg-teal-300 transition-all h-full w-32 border-s-2 border-slate-200">
           RANKING
         </button>

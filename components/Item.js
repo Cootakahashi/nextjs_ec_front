@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Items({ data }) {
   return (
     <>
-      <div className="text-2xl my-10">
+      <div className="text-2xl md:my-10 my-5 mx-5 ">
         <h1 className="font-bold">{data.title}</h1>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +12,7 @@ export default function Items({ data }) {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-5 h-5 text-teal-400"
+          className="w-5 h-5 text-teal-400 mt-2"
         >
           <path
             strokeLinecap="round"
@@ -21,7 +21,7 @@ export default function Items({ data }) {
           />
         </svg>
       </div>
-      <div className="flex">
+      <div className="md:flex mx-5 ">
         <div className="relative">
           <Image
             className="object-cover"
@@ -30,11 +30,11 @@ export default function Items({ data }) {
             height={480}
           />
           <div
-            className="absolute top-0 left-0 flex justify-center items-center text-white text-sm bg-red-700 h-[111px] w-[111px] "
+            className="absolute top-0 left-0 flex justify-center items-center text-white text-sm bg-red-700 md:h-[111px] md:w-[111px] h-[80px] w-[80px] "
             style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
           >
             <span
-              className="mb-8 mr-5"
+              className="md:mb-8 md:mr-5 mr-5 mb-12 text-xs md:text-base font-bold"
               style={{
                 transform: "rotate(-45deg)",
               }}
@@ -44,18 +44,23 @@ export default function Items({ data }) {
           </div>
         </div>
         <Image
-          className="object-cover h-40 ml-5"
+          className="object-cover md:ml-5 w-24 h-24 md:w-40 md:h-40 mt-3 md:mt-auto"
           src={data.images[1]}
           width={140}
           height={240}
         />
       </div>
-      <div>
+      <div className="mx-5">
         <p className="whitespace-pre-line mt-8 font-light">
-          Tシャツは、着心地と合わせやすさが決め手。普段使いや、軽いスポーツ時にも使えますし、年間を通してお使いいただけるアイテムのひとつです。定番ゆえに様々なカラーや柄物のアイテムを複数お持ちの方も多いのではないでしょうか。上質なコットン生地を使用したEGO-Tは、肌触りが良くタフなので、ヘビロテアイテムとしてオススメです。
+          {`Tシャツは、着心地と合わせやすさが決め手。普段使いや、軽いスポーツ時にも使えますし、
+          年間を通してお使いいただけるアイテムのひとつです。
+          
+          定番ゆえに様々なカラーや柄物のアイテムを複数お持ちの方も多いのではないでしょうか。
+          
+          上質なコットン生地を使用したEGO-Tは、肌触りが良くタフなので、ヘビロテアイテムとしてオススメです。`}
         </p>
         <div>
-          <span className="flex icons mt-3">
+          <span className="flex icons md:mt-3 mt-8">
             <a className="text-slate-800">
               <svg
                 fill="currentColor"
@@ -119,7 +124,7 @@ export default function Items({ data }) {
             NEW <span className="text-black">,</span>LADIES
           </span>
         </div>
-        <div className="pricebox border pt-12 pb-10 px-16 w-[400px] mt-8">
+        <div className="pricebo border pt-12 pb-10 px-16 md:w-[400px] mt-8 border-gray-300 my-5">
           <span className="font-bold text-2xl mr-3">¥2500</span>
           <span className="font-extralight">(税別)</span>
           <p className="font-extralight mt-5">在庫　在庫あり</p>

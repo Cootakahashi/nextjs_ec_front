@@ -45,12 +45,12 @@ export default function Home({
       <SearchBar />
       <Header />
       <Top image={image} />
-      <div className="md:ml-40 mx-3 md:mx-auto">
-        <div className="md:grid md:grid-cols-8 ">
-          <div className="md:col-span-2 hidden md:block">
+      <div className="mx-5 md:mx-36">
+        <div className="grid md:grid-cols-8 grid-rows-2">
+          <div className="md:col-span-2 hidde md:block row-start-2 md:row-start-1">
             <SideBar sections={SideSections} />
           </div>
-          <div className="md:col-span-6 ">
+          <div className="md:col-span-6  row-start-1">
             <GridItems sections={GridSections} />
           </div>
         </div>
@@ -115,16 +115,16 @@ export async function getStaticProps() {
     {
       title: "CATEGORYS",
       images: [
-        "/cloths/square/11.png",
-        "/cloths/square/7.png",
-        "/cloths/square/6.png",
-        "/cloths/square/5.png",
+        "/cloths/square/13.png",
+        "/cloths/wide/9.png",
+        "/cloths/wide/6.png",
+        "/cloths/square/19.png",
       ],
     },
     {
       title: "NEW ARRIVAL",
       images: [
-        "/cloths/square/13.png",
+        "/cloths/square/19.png",
         "/cloths/square/14.png",
         "/cloths/square/15.png",
       ],
@@ -153,7 +153,7 @@ export async function getStaticProps() {
     },
   ];
   const image = {
-    src: "/cloths/wide/5.png",
+    src: "/cloths/wide/12.png",
     alt: "Image 1",
     width: 1020,
     height: 580,
