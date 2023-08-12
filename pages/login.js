@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { login } from "../actions/auth";
-// import Loader from "react-loader-spinner";
+// import { Loader } from 'react-loader-spinner'; // 正しい
 import Head from "next/head";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
