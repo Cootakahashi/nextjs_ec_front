@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import handleCheckout from "./handleCheckoutStripe";
+export default function Items({ data, product }) {
+  const price = Math.floor(product.price);
 
-export default function Items({ data }) {
   return (
     <>
       <div className="text-2xl md:my-10 my-5 mx-5 ">
-        <h1 className="font-bold">{data.title}</h1>
+        <h1 className="font-bold">{product.name}</h1>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -25,7 +27,8 @@ export default function Items({ data }) {
         <div className="relative">
           <Image
             className="object-cover"
-            src={data.images[0]}
+            src={product.image}
+            alt="clothes"
             width={620}
             height={480}
           />
@@ -46,18 +49,20 @@ export default function Items({ data }) {
         <Image
           className="object-cover md:ml-5 w-24 h-24 md:w-40 md:h-40 mt-3 md:mt-auto"
           src={data.images[1]}
+          alt="clothes other"
           width={140}
           height={240}
         />
       </div>
       <div className="mx-5">
         <p className="whitespace-pre-line mt-8 font-light">
-          {`Tシャツは、着心地と合わせやすさが決め手。普段使いや、軽いスポーツ時にも使えますし、
+          {product.description}
+          {/* {`Tシャツは、着心地と合わせやすさが決め手。普段使いや、軽いスポーツ時にも使えますし、
           年間を通してお使いいただけるアイテムのひとつです。
           
           定番ゆえに様々なカラーや柄物のアイテムを複数お持ちの方も多いのではないでしょうか。
           
-          上質なコットン生地を使用したEGO-Tは、肌触りが良くタフなので、ヘビロテアイテムとしてオススメです。`}
+          上質なコットン生地を使用したEGO-Tは、肌触りが良くタフなので、ヘビロテアイテムとしてオススメです。`} */}
         </p>
         <div>
           <span className="flex icons md:mt-3 mt-8">
@@ -125,13 +130,16 @@ export default function Items({ data }) {
           </span>
         </div>
         <div className="pricebo border pt-12 pb-10 px-16 md:w-[400px] mt-8 border-gray-300 my-5">
-          <span className="font-bold text-2xl mr-3">¥2500</span>
+          <span className="font-bold text-2xl mr-3">
+            ¥{Math.floor(product.price)}
+          </span>
           <span className="font-extralight">(税別)</span>
           <p className="font-extralight mt-5">在庫　在庫あり</p>
-          <button className="bg-cyan-300 text-white px-16 py-4 text-sm mt-5 hover:bg-cyan-700 transition-all">
-            <Link href="https://buy.stripe.com/fZeeXaf1X3xF0JGbIU" passHref>
-              今すぐ購入
-            </Link>
+          <button
+            className="bg-cyan-300 text-white px-16 py-4 text-sm mt-5 hover:bg-cyan-700 transition-all"
+            onClick={() => handleCheckout(price)}
+          >
+            今すぐ購入
           </button>
         </div>
       </div>

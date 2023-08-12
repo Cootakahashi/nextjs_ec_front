@@ -1,6 +1,41 @@
 import { useEffect, useState } from "react";
+import cookie from "cookie";
 
-export default function ScrollCart() {
+const addToCart = (product) => {
+  const data = { product_id: product.id };
+  console.log(data);
+  console.log(product.id);
+  console.log("HIHI");
+
+  // クッキーからアクセストークンを取得
+  const cookies = cookie.parse(document.cookie);
+  const access = cookies.access ?? false;
+
+  if (access === false) {
+    alert("認証情報がありません。");
+    return;
+  }
+
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/add_to_cart/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${access}`, // 認証ヘッダーを設定
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      alert(data.message);
+    })
+    .catch((error) => {
+      console.log("daaa");
+      console.error(error);
+    });
+};
+export default function ScrollCart({ price, product }) {
+  console.log(product.id);
+  console.log(price);
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {
@@ -23,9 +58,10 @@ export default function ScrollCart() {
       }`}
     >
       <p className="text-lg">
-        ¥2500 <span className="text-sm font-light">(税別)</span>
+        ¥{price} <span className="text-sm font-light">(税別)</span>
       </p>
       <button
+        onClick={() => addToCart(product)}
         className="px-4 py-2 text-white flex"
         style={{ backgroundColor: "rgb(84, 185, 187)" }}
       >

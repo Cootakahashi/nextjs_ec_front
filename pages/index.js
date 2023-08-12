@@ -7,20 +7,29 @@ import ImageComponent from "../components/ImageComponent";
 import ProductSlider from "../components/ProductSlider";
 import CategorySidebar from "../components/CategorySidebar";
 import Grid from "../components/GridCategory";
-import Ranking from "../components/Ranking";
+import Ranking from "../components/swiper_products/Ranking";
 import Items from "../components/Items";
 import GridSecond from "@/components/GridSecond";
 import GridBrand from "@/components/GridBrand";
 import Footer from "@/components/FooterMenu";
-
+import Recommend from "@/components/swiper_products/Recommend";
+import Sales from "@/components/swiper_products/Sales";
+import { useState } from "react";
 export default function Home({
   mainSections,
-  itemsSections,
   gridImages,
   Rankingsections,
+  Recommendsections,
+  Salessections,
   GridSecondSections,
   GridBrandSections,
+  NewProductSections,
 }) {
+  console.log(NewProductSections);
+  const [selectedComponent, setSelectedComponent] = useState("Ranking");
+  const handleSelectComponent = (component) => {
+    setSelectedComponent(component);
+  };
   const squareImages = Array.from(
     { length: 14 },
     (_, i) => `/canva/square/${i + 1}.png`
@@ -45,8 +54,25 @@ export default function Home({
       <Header />
       <Main sections={mainSections} />
       <Grid images={gridImages} />
-      <Ranking sections={Rankingsections} />
-      <Items sections={itemsSections} />
+      {selectedComponent === "Ranking" && (
+        <Ranking
+          Rankingsections={Rankingsections}
+          onSelectComponent={handleSelectComponent}
+        />
+      )}
+      {selectedComponent === "Recommend" && (
+        <Recommend
+          Recommendsections={Recommendsections}
+          onSelectComponent={handleSelectComponent}
+        />
+      )}
+      {selectedComponent === "Sales" && (
+        <Sales
+          Salessections={Salessections}
+          onSelectComponent={handleSelectComponent}
+        />
+      )}
+      <Items products={NewProductSections} />
       <GridSecond sections={GridSecondSections} />
       <GridBrand sections={GridBrandSections} />
       <Footer />
@@ -94,24 +120,26 @@ export async function getStaticProps() {
     // Add more sections as needed
   ];
 
-  const itemsSections = [
-    {
-      title: "Ranking",
-      images: Array.from({ length: 8 }, (_, i) => `/items/${i + 2}.png`),
-    },
-  ];
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/auth/products/?page=1`
+  );
+  const data = await res.json();
+  const products = data.results;
+  const Rankingsections = products.filter(
+    (product) => product.ranking !== null
+  );
+  const Recommendsections = products.filter(
+    (product) => product.recommend == true
+  );
+  const Salessections = products.filter(
+    (product) => product.sales_discount == true
+  );
 
-  const Rankingsections = [
-    {
-      title: "New Arrivals",
-      images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
-    },
-    {
-      title: "Ranking",
-      images: Array.from({ length: 4 }, (_, i) => `/items/${i + 17}.png`),
-    },
-  ];
-
+  // 1から順番に並べ替え
+  Rankingsections.sort((a, b) => a.ranking - b.ranking);
+  const NewProductSections = products
+    .filter((product) => product.new_product == true)
+    .slice(0, 8); //
   const GridSecondSections = [
     {
       title: "GridSecond",
@@ -172,9 +200,11 @@ export async function getStaticProps() {
   return {
     props: {
       mainSections,
-      itemsSections,
+      NewProductSections,
       gridImages,
       Rankingsections,
+      Recommendsections,
+      Salessections,
       GridSecondSections,
       GridBrandSections,
     },

@@ -1,62 +1,55 @@
-import Header from "../components/Header";
-import SearchBar from "../components/SearchBar";
-import GridBrand from "@/components/GridBrand";
-import Footer from "@/components/FooterMenu";
+import Link from "next/link";
+import Header from "../../components/Header";
+import SearchBar from "../../components/SearchBar";
 import Top from "@/components/Top";
+import GridBrand from "@/components/GridBrand";
 import GridItems from "@/components/GridItems";
 import SideBar from "@/components/SideBar";
+import Footer from "@/components/FooterMenu";
 
-export default function Home({
+function CategoryPage({
+  name,
   GridBrandSections,
   SideSections,
   Gridproducts,
   totalPages,
   image,
 }) {
-  const squareImages = Array.from(
-    { length: 14 },
-    (_, i) => `/canva/square/${i + 1}.png`
-  );
-  const wideImages = Array.from(
-    { length: 14 },
-    (_, i) => `/cloths/wide/${i + 1}.png`
-  );
-  const products = Array.from({ length: 20 }, (_, i) => ({
-    url: `https://example.com/product${i + 1}`,
-    image: `/cloths/square/${i + 1}.png`,
-    name: `Product ${i + 1}`,
-    category: `Category ${i + 1}`,
-    price: `¥${(i + 1) * 1000}`,
-    variety: `${i + 1} types`,
-    discount: `¥${(i + 1) * 100} OFF`,
-  }));
-
   return (
     <div>
-      <SearchBar />
-      <Header />
-      <Top image={image} />
-      <div className="mx-5 md:mx-36">
-        <div className="grid md:grid-cols-8 grid-rows-">
-          <div className="md:col-span-2 hidde md:block row-start-2 md:row-start-1">
-            <SideBar sections={SideSections} />
-          </div>
-          <div className="md:col-span-6 ">
-            <GridItems products={Gridproducts} totalPages={totalPages} />
+      <h1>{Gridproducts[0].category.name} カテゴリの商品一覧</h1>
+      <ul></ul>
+
+      <div>
+        <SearchBar />
+        <Header />
+        <Top image={image} name={Gridproducts[0].category.name} />
+        <div className="mx-5 md:mx-36">
+          <div className="grid md:grid-cols-8 grid-rows-">
+            <div className="md:col-span-2 hidde md:block row-start-2 md:row-start-1">
+              <SideBar sections={SideSections} />
+            </div>
+            <div className="md:col-span-6 ">
+              <GridItems products={Gridproducts} totalPages={totalPages} />
+            </div>
           </div>
         </div>
+        <GridBrand sections={GridBrandSections} />
+
+        <Footer />
+        {/* <SearchBar /> */}
+
+        {/* <Grid /> */}
       </div>
-      <GridBrand sections={GridBrandSections} />
-
-      <Footer />
-      {/* <SearchBar /> */}
-
-      {/* <Grid /> */}
     </div>
   );
 }
 
-export async function getStaticProps() {
+export default CategoryPage;
+
+export async function getServerSideProps(context) {
+  const { name } = context.params;
+
   const GridBrandSections = [
     {
       title: "RANKING",
@@ -130,41 +123,42 @@ export async function getStaticProps() {
     },
   ];
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/auth/products/?page=1`
+  // カテゴリーに関連する製品を取得
+  const resCategoryProducts = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/auth/category/${name}/`
   );
-  const data = await res.json();
-  const Gridproducts = data.results;
 
-  const pageSize = 12; // 1ページあたりのアイテム数
-  const totalPages = Math.ceil(data.count / pageSize);
+  if (!resCategoryProducts.ok) {
+    throw new Error("Network response was not ok");
+  }
 
-  // const GridSections = [
-  //   {
-  //     title: "New Arrivals",
-  //     images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
-  //   },
-  //   {
-  //     title: "Ranking",
-  //     images: Array.from(
-  //       { length: 12 },
-  //       (_, i) => `/cloths/square/${i + 1}.png`
-  //     ),
-  //   },
-  // ];
+  const dataCategoryProducts = await resCategoryProducts.json();
+  const Gridproducts = dataCategoryProducts.results;
+  // const dataGridProducts = await resCategoryProducts.json();
+  // // グリッド製品を取得
+  // const resGridProducts = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_URL}/api/auth/products/?page=1`
+  // );
+  // const dataGridProducts = await resGridProducts.json();
+  // const Gridproducts = dataGridProducts.results;
+
+  const pageSize = 12;
+  const totalPages = Math.ceil(dataCategoryProducts.count / pageSize);
+
   const image = {
     src: "/cloths/wide/12.png",
     alt: "Image 1",
     width: 1020,
     height: 580,
   };
+
   return {
     props: {
       GridBrandSections,
       SideSections,
+      // products,
       Gridproducts,
       totalPages,
-
       image,
     },
   };

@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import SearchBar from "../components/SearchBar";
+import Header from "../../components/Header";
+import SearchBar from "../../components/SearchBar";
 import GridBrand from "@/components/GridBrand";
 import Footer from "@/components/FooterMenu";
 import Top from "@/components/Top";
@@ -35,14 +35,14 @@ export default function Home({
     <div>
       <SearchBar />
       <Header />
-      <Top image={image} />
+      <Top image={image} name={"Ranking"} />
       <div className="mx-5 md:mx-36">
         <div className="grid md:grid-cols-8 grid-rows-">
           <div className="md:col-span-2 hidde md:block row-start-2 md:row-start-1">
             <SideBar sections={SideSections} />
           </div>
           <div className="md:col-span-6 ">
-            <GridItems products={Gridproducts} totalPages={totalPages} />
+            <GridItems products={Gridproducts} />
           </div>
         </div>
       </div>
@@ -57,6 +57,16 @@ export default function Home({
 }
 
 export async function getStaticProps() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/auth/products/?page=1`
+  );
+  const data = await res.json();
+  const products = data.results;
+  const Gridproducts = products.filter((product) => product.ranking !== null);
+
+  // 1から順番に並べ替え
+  Gridproducts.sort((a, b) => a.ranking - b.ranking);
+
   const GridBrandSections = [
     {
       title: "RANKING",
@@ -130,28 +140,6 @@ export async function getStaticProps() {
     },
   ];
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/auth/products/?page=1`
-  );
-  const data = await res.json();
-  const Gridproducts = data.results;
-
-  const pageSize = 12; // 1ページあたりのアイテム数
-  const totalPages = Math.ceil(data.count / pageSize);
-
-  // const GridSections = [
-  //   {
-  //     title: "New Arrivals",
-  //     images: Array.from({ length: 4 }, (_, i) => `/canva/middle/${i + 1}.png`),
-  //   },
-  //   {
-  //     title: "Ranking",
-  //     images: Array.from(
-  //       { length: 12 },
-  //       (_, i) => `/cloths/square/${i + 1}.png`
-  //     ),
-  //   },
-  // ];
   const image = {
     src: "/cloths/wide/12.png",
     alt: "Image 1",
@@ -163,7 +151,6 @@ export async function getStaticProps() {
       GridBrandSections,
       SideSections,
       Gridproducts,
-      totalPages,
 
       image,
     },

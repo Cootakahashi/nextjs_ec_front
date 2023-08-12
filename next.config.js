@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
-}
-
-module.exports = nextConfig
+  images: {
+    domains: ["localhost:8000", "127.0.0.1", "localhost"], // 開発環境でのDjangoサーバーのドメインを設定します。
+  },
+};

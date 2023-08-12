@@ -169,27 +169,3 @@ export default function SideBar({ sections }) {
     </>
   );
 }
-
-export async function getStaticProps() {
-  const sections = [
-    {
-      title: "GridSecond",
-      images: [
-        "/cloths/square/11.png",
-        "/cloths/square/7.png",
-        "/cloths/square/6.png",
-        "/cloths/square/5.png",
-        "/cloths/square/13.png",
-        "/cloths/square/14.png",
-        "/cloths/square/15.png",
-        "/cloths/square/9.png",
-      ],
-    },
-  ];
-
-  return {
-    props: {
-      images,
-    },
-  };
-}

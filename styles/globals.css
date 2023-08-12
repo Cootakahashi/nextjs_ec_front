@@ -42,3 +42,24 @@
 
   animation: fadeIn 2s ease-in-out 3s forwards;
 }
+
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px; /* 幅 */
+  height: 30px; /* 高さ */
+  /* background: #000; 背景色 */
+  color: #fff; /* テキスト色 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.swiper-button-prev-custom {
+  left: 55px; /* 左側の位置 */
+}
+.swiper-button-next-custom {
+  right: 55px; /* 右側の位置 */
+}

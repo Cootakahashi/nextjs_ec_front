@@ -1,6 +1,21 @@
 import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
-export default function GridItems({ sections }) {
+export default function GridItems({ products: initialProducts, totalPages }) {
+  const [products, setProducts] = useState(initialProducts);
+  // const { wishlist, handleHeartClick } = useWishlist();
+  const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
+
+  const handlePageChange = async (newPage) => {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/auth/products/?page=${newPage}`
+    );
+    const data = await res.json();
+    setProducts(data.results);
+    setCurrentPage(newPage);
+  };
   return (
     <>
       {/* <div className="text-center py-16 ">
@@ -21,32 +36,45 @@ export default function GridItems({ sections }) {
           </button>
         </div>
       </header>
-      {sections.slice(1).map((section, sectionIndex) => (
-        <div key={sectionIndex} className="">
-          <div className="grid grid-cols-2 md:grid-cols-3 justify-items-center  gap-5 md:gap-0 ">
-            {section.images.slice(0, 12).map((image, index) => (
-              <div
-                key={index}
-                className="relative  text-slate-900 hover:text-slate-500"
-              >
-                <Link href="/item" passHref>
-                  <div className="overflow-hidden">
-                    <img
-                      className="h-[200px] md:w-[235px] md:h-[290px] hover:scale-125 transition-all duration-500"
-                      src={image}
-                      alt={`${section.title} product ${index + 1}`}
-                    />
-                  </div>
-                  <div className="absolut top- left-  py-5">
-                    <span className="font-extralight text-sm">MENS</span>
-                    <h2 className="ml-1 font-bold text-sm"> [TCD] Tシャツ</h2>
-                  </div>
-                </Link>
-              </div>
-            ))}
+      <div className="grid grid-cols-2 md:grid-cols-3 justify-items-center  gap-5 md:gap-0 ">
+        {products.map((product, sectionIndex) => (
+          <div key={sectionIndex} className="">
+            <div className="relative  text-slate-900 hover:text-slate-500">
+              <Link href={`/product/${product.id}`} passHref>
+                <div className="overflow-hidden">
+                  {router.pathname === "/category/ranking" &&
+                    product.ranking && <div>{product.ranking}</div>}
+                  <img
+                    className="h-[200px] md:w-[235px] md:h-[290px] hover:scale-125 transition-all duration-500"
+                    src={product.image}
+                    alt={`${product.title} product ${sectionIndex + 1}`}
+                  />
+                </div>
+                <div className="absolut top- left-  py-5">
+                  <span className="font-extralight text-sm">
+                    {product.category.name}
+                  </span>
+                  <h2 className="ml-1 font-bold text-sm"> {product.name} </h2>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-      ))}{" "}
+        ))}{" "}
+      </div>
+      <div className="my-8">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+          (pageNumber) => (
+            <button
+              key={pageNumber}
+              className="mx-2 border-2 border-gray-300 px-4 py-2 rounded"
+              onClick={() => handlePageChange(pageNumber)}
+              disabled={pageNumber === currentPage}
+            >
+              {pageNumber}
+            </button>
+          )
+        )}
+      </div>
     </>
   );
 }
