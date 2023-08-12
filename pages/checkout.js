@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { create_checkout } from "../actions/auth";
 import { useRouter } from "next/router";
 import Head from "next/head";
-// import { Loader } from "react-loader-spinner";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -43,8 +42,7 @@ const Checkout = () => {
 
           <div className="flex justify-center">
             {loading ? (
-              // <Loader type="Oval" color="#F59E00" width={50} height={50} />
-              <></>
+              <div>お支払い中...</div>
             ) : (
               <div
                 className="button-yellow cursor-pointer"

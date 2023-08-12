@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { login } from "../actions/auth";
-// import { Loader } from 'react-loader-spinner'; // 正しい
 import Head from "next/head";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
+
 const Login = () => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -76,7 +76,6 @@ const Login = () => {
 
         <div className="flex justify-center">
           {loading ? (
-            // <Loader type="Oval" color="#F59E00" width={50} height={50} />
             <>hi</>
           ) : (
             <button className="button-yellow" type="submit">
