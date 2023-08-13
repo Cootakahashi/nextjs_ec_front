@@ -9,6 +9,7 @@ import Footer from "@/components/FooterMenu";
 import Item from "@/components/Item";
 import SideBar from "@/components/SideBar";
 import ScrollCart from "@/components/AddCart";
+import useWishlist from "@/components/useWishlist";
 
 export async function getStaticPaths() {
   const res = await fetch(
@@ -105,22 +106,26 @@ function ItemDetail({ product, SideSections, data }) {
         alert(data.message);
       })
       .catch((error) => {
-        console.log("daaa");
         console.error(error);
       });
   };
+  const { wishlist, handleHeartClick, setWishlist } = useWishlist();
+  const [wishnum, setWishnum] = useState(wishlist.length);
 
+  useEffect(() => {
+    setWishnum(wishlist.length);
+  }, [wishlist]);
   return (
     <div>
       <div>
         <SearchBar />
-        <Header />
+        <Header wishnum={wishnum} />
         <div className="grid md:grid-cols-7 md:mt-20">
           <div className="md:col-span-2 md:ml-10 row-start-2 md:row-start-1 md:block">
             <SideBar sections={SideSections} />
           </div>
           <div className="md:col-span-5">
-            <Item data={data} product={product} />
+            <Item data={data} product={product} wishlist={wishlist} />
           </div>
         </div>
 

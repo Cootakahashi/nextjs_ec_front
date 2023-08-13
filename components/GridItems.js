@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 
 export default function GridItems({ products: initialProducts, totalPages }) {
@@ -7,6 +7,28 @@ export default function GridItems({ products: initialProducts, totalPages }) {
   // const { wishlist, handleHeartClick } = useWishlist();
   const [currentPage, setCurrentPage] = useState(1);
   const router = useRouter();
+  const [isItemsOpen, setItemsOpen] = useState(false);
+  const [isSortOpen, setSortOpen] = useState(false);
+  const [isStockOpen, setStockOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const closeAllDropdowns = () => {
+    setItemsOpen(false);
+    setSortOpen(false);
+    setStockOpen(false);
+  };
+
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      closeAllDropdowns();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handlePageChange = async (newPage) => {
     const res = await fetch(
@@ -23,17 +45,133 @@ export default function GridItems({ products: initialProducts, totalPages }) {
         <h1 className="text-3xl font-extrabold	py-5">NEW ARRIVAL</h1>
         <h2>新着アイテム</h2>{" "}
       </div> */}
-      <header className="w-full text-slate-900 flex justify-center md:text-xs md:text-sm font-medium h-[46px] md:h-[55px] md:px-36; mb-10">
-        <div className="flex w-full justify-between text-sm whitespace-nowrap border  border-slate-300 font-light">
-          <button className="flex-grow  transition-all h-full  px-3 md:px-0">
-            Mens
-          </button>
-          <button className="flex-grow transition-all h-full border-s-2 border-slate-300 px-3 md:px-0">
-            新着順
-          </button>
-          <button className="flex-grow ransition-all h-full border-s-2 border-slate-300 px-3 md:px-0">
-            すべて
-          </button>
+      <header
+        ref={dropdownRef}
+        className="w-full text-slate-900 flex md:text-xs md:text-sm font-medium h-[46px] md:h-[55px] mb-10"
+      >
+        <div className="flex w-full justify-bet text-sm whitespace-nowrap border border-slate-300 font-light">
+          {/* All items dropdown */}
+          <div className="relative flex-grow">
+            <button
+              onClick={() => {
+                setItemsOpen(!isItemsOpen);
+                setSortOpen(false);
+                setStockOpen(false);
+              }}
+              className="w-full transition-all h-full px-5 items-center flex justify-between border-r"
+            >
+              ALL ITEM <span className="">&#x25BC;</span>
+            </button>
+            {isItemsOpen && (
+              <div
+                className="absolute top-full left-0 z-10 bg-white border border-slate-300 w-full transition-opacity duration-300 opacity-0 transform translate-y-2"
+                style={
+                  isItemsOpen ? { opacity: 1, transform: "translateY(0)" } : {}
+                }
+              >
+                <div className="p-3">
+                  <Link href="/category/Mens" passHref>
+                    <div className="my-2 hover:text-slate-700 cursor-pointer">
+                      MENS
+                    </div>
+                  </Link>
+                  <Link href="/category/Womens" passHref>
+                    <div className="my-2 hover:text-slate-700 cursor-pointer">
+                      LADIES
+                    </div>
+                  </Link>
+                  <Link href="/category/Unisex" passHref>
+                    <div className="my-2 hover:text-slate-700 cursor-pointer">
+                      UNISEX
+                    </div>
+                  </Link>
+                  <Link href="/category/Limited" passHref>
+                    <div className="my-2 hover:text-slate-700 cursor-pointer">
+                      LIMITED
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+          {/* Sort dropdown */}
+          <div className="relative flex-grow">
+            <button
+              onClick={() => {
+                setSortOpen(!isSortOpen);
+                setItemsOpen(false);
+                setStockOpen(false);
+              }}
+              className="w-full transition-all h-full px-3 md:px-5 flex justify-between items-center border-r"
+            >
+              新着順 <span className="ml-2">&#x25BC;</span>
+            </button>
+            {isSortOpen && (
+              <div
+                className="absolute top-full left-0 z-10 bg-white border border-slate-300 w-full transition-opacity duration-300 opacity-0 transform translate-y-2"
+                style={
+                  isSortOpen ? { opacity: 1, transform: "translateY(0)" } : {}
+                }
+              >
+                <div className="p-3">
+                  <Link href="/popularity" passHref>
+                    <div className="my-2 hover:text-slate-700 cursor-pointer">
+                      人気順
+                    </div>
+                  </Link>
+                  <Link href="/high-price" passHref>
+                    <div className="my-2 hover:text-slate-700 cursor-pointer">
+                      価格が高い順
+                    </div>
+                  </Link>
+                  <Link href="/low-price" passHref>
+                    <div className="my-2 hover:text-slate-700 cursor-pointer">
+                      価格が低い順
+                    </div>
+                  </Link>
+                  <Link href="/recommended" passHref>
+                    <div className="my-2 hover:text-slate-700 cursor-pointer">
+                      おすすめ順
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
+          {/* Stock dropdown */}
+          <div className="relative flex-grow">
+            <button
+              onClick={() => {
+                setStockOpen(!isStockOpen);
+                setItemsOpen(false);
+                setSortOpen(false);
+              }}
+              className="w-full transition-all h-full px-3 md:px-5 flex justify-between items-center"
+            >
+              すべて <span className="ml-2">&#x25BC;</span>
+            </button>
+            {isStockOpen && (
+              <div
+                className="absolute top-full left-0 z-10 bg-white border border-slate-300 w-full transition-opacity duration-300 opacity-0 transform translate-y-2"
+                style={
+                  isStockOpen ? { opacity: 1, transform: "translateY(0)" } : {}
+                }
+              >
+                <div className="p-3">
+                  <Link href="/in-stock" passHref>
+                    <div className="my-2 hover:text-slate-700 cursor-pointer">
+                      在庫あり
+                    </div>
+                  </Link>
+                  <Link href="/all" passHref>
+                    <div className="my-2 hover:text-slate-700 cursor-pointer">
+                      すべて
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </header>
       <div className="grid grid-cols-2 md:grid-cols-3 justify-items-center  gap-5 md:gap-0 ">

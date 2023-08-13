@@ -3,10 +3,6 @@ import cookie from "cookie";
 
 const addToCart = (product) => {
   const data = { product_id: product.id };
-  console.log(data);
-  console.log(product.id);
-  console.log("HIHI");
-
   // クッキーからアクセストークンを取得
   const cookies = cookie.parse(document.cookie);
   const access = cookies.access ?? false;
@@ -29,13 +25,10 @@ const addToCart = (product) => {
       alert(data.message);
     })
     .catch((error) => {
-      console.log("daaa");
       console.error(error);
     });
 };
 export default function ScrollCart({ price, product }) {
-  console.log(product.id);
-  console.log(price);
   const [isVisible, setIsVisible] = useState(false);
 
   const toggleVisibility = () => {

@@ -2,9 +2,22 @@ import { useState } from "react";
 import Image from "next/image";
 import logo from "../public/logo/transparent.png"; // ロゴのパスを適切に設定してください
 import Link from "next/link";
-export default function Header() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+import useWishlist from "./useWishlist";
+import { useEffect } from "react";
 
+export default function Header({ wishnum: propWishnum }) {
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { wishlist } = useWishlist();
+  const [wishnum, setWishnum] = useState(
+    propWishnum !== undefined ? propWishnum : wishlist.length
+  );
+
+  // 必要であれば、wishlistの変更を検知してwishnumを更新するためのuseEffectも追加できます
+  useEffect(() => {
+    if (propWishnum === undefined) {
+      setWishnum(wishlist.length);
+    }
+  }, [wishlist, propWishnum]);
   return (
     <header className="w-full bg-white bg-gray-200 flex justify-between h-16 md:h-[70px] text-sm font-light	border">
       <Link href="/" passHref>
@@ -28,7 +41,7 @@ export default function Header() {
         <Link href="/allitems" passHref>
           <button className="hover:bg-teal-300 transition-all h-full w-32 border-s-2 border-slate-200">
             ITEM
-          </button>{" "}
+          </button>
         </Link>
         <Link href="/category/ranking" passHref>
           <button className="hover:bg-teal-300 transition-all h-full w-32 border-s-2 border-slate-200">
@@ -46,6 +59,7 @@ export default function Header() {
       </div>
       <div className="flex items-center mx-5 md:mr-32">
         <Link href="/wishlist" passHref>
+          {wishnum > 0 ? <span className="">{wishnum}</span> : null}
           <button className="mx-2" onClick={() => setIsSearchOpen(true)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

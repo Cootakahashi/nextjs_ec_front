@@ -1,11 +1,7 @@
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
-import FeaturedCategories from "../components/FeaturedCategories";
-import FeaturedProducts from "../components/FeaturedProducts";
+
 import Main from "../components/Main";
-import ImageComponent from "../components/ImageComponent";
-import ProductSlider from "../components/ProductSlider";
-import CategorySidebar from "../components/CategorySidebar";
 import Grid from "../components/GridCategory";
 import Ranking from "../components/swiper_products/Ranking";
 import Items from "../components/Items";
@@ -76,20 +72,6 @@ export default function Home({
       <GridSecond sections={GridSecondSections} />
       <GridBrand sections={GridBrandSections} />
       <Footer />
-      {/* <div className="p-20 ml-40 translate-x-20">
-        <ProductSlider products={products} />
-      </div>
-      <div className="-translate-y-80 translate-x-5">
-        {" "}
-        <CategorySidebar />
-      </div>
-      <div className="p-20 ml-40 translate-x-20 -translate-y-80">
-        <ProductSlider products={products} />
-        <ProductSlider products={products} />
-      </div> */}
-
-      {/* <FeaturedCategories />
-      <FeaturedProducts /> */}
     </div>
   );
 }

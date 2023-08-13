@@ -17,8 +17,6 @@ function Wishlist({ GridBrandSections }) {
   useEffect(() => {
     const fetchProducts = async () => {
       if (wishlist && wishlist.length > 0) {
-        console.log("HI");
-        console.log(wishlist);
         const productIds = wishlist.map((item) => item.product_id);
         const fetchedProducts = await Promise.all(
           productIds.map((productId) =>
@@ -53,7 +51,6 @@ function Wishlist({ GridBrandSections }) {
                 <Image
                   src={product.image}
                   alt={product.name}
-                  layout="responsive"
                   width={200}
                   height={200}
                 />

@@ -49,9 +49,6 @@ export default function Home({
       <GridBrand sections={GridBrandSections} />
 
       <Footer />
-      {/* <SearchBar /> */}
-
-      {/* <Grid /> */}
     </div>
   );
 }

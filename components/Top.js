@@ -9,7 +9,7 @@ export default function Top({ image, name }) {
             className=""
             src={image.src}
             alt={image.alt}
-            width={image.width}
+            width={1920}
             height={image.height}
           />
           <div className="absolute inset-0 bg-black bg-opacity-20" />
@@ -19,7 +19,7 @@ export default function Top({ image, name }) {
           </div>
         </div>
         <div className="absolute top-32 md:top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center space-y-4">
-          <h1 className="text-md md:text-3xl text-white font-bold text-center">
+          <h1 className="text-md md:text-3xl text-white font-bold text-center whitespace-nowrap">
             さまざまなシーンでＴシャツを遊ぶ。
           </h1>
           <p className="text-white text-center md:px-4 text-sm">
