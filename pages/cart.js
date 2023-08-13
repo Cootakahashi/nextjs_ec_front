@@ -116,7 +116,10 @@ export default function Cart() {
               <div key={index} className="flex border rounded p-4 items-center">
                 <div className="w-1/4">
                   <Image
-                    src={item.image_url}
+                    src={
+                      "https://djangobackec-f0d32835962b.herokuapp.com" +
+                      item.image_url
+                    }
                     alt={item.product.name}
                     width={100}
                     height={100}
