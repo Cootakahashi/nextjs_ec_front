@@ -116,7 +116,7 @@ export default function Cart() {
               <div key={index} className="flex border rounded p-4 items-center">
                 <div className="w-1/4">
                   <Image
-                    src={"http://localhost:8000" + item.image_url}
+                    src={item.image_url}
                     alt={item.product.name}
                     width={100}
                     height={100}
