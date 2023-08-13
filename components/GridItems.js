@@ -54,7 +54,7 @@ export default function GridItems({ products: initialProducts, totalPages }) {
                   <span className="font-extralight text-sm">
                     {product.category.name}
                   </span>
-                  <h2 className="ml-1 font-bold text-sm"> {product.image} </h2>
+                  {/* <h2 className="ml-1 font-bold text-sm"> {product.image} </h2> */}
 
                   <h2 className="ml-1 font-bold text-sm"> {product.name} </h2>
                 </div>
