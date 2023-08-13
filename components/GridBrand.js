@@ -19,7 +19,7 @@ export default function GridBrand({ sections }) {
             <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
           </svg>
         </a>
-        <h1>Only 1. INSTAGRAM</h1>
+        <h1>Only 1 INSTAGRAM</h1>
       </header>
       <div className="col-span-full grid grid-cols-3 md:grid-cols-6">
         <div className="overflow-hidden">
