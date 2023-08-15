@@ -114,21 +114,22 @@ export default function Sales({ Salessections, onSelectComponent }) {
                       index % 4 !== 3 ? "pr-3" : ""
                     }`}
                   >
-                    <div className="overflow-hidden">
+                    <div className="overflow-hidden relative h-[240px] w-[200px]  mx-3 mt-8 md:mx-0 md:mt-0">
                       <Image
-                        className="h-80 hover:scale-125 transition-all duration-500"
-                        src={item.image}
-                        width={500}
-                        height={200}
+                        className="hover:scale-125 transition-all duration-500"
+                        // src={item.image}
+                        src="/cloths/square/1.png"
+                        fill
+                        style={{ objectFit: "cover" }}
                         alt={`${item.name}`}
                       />
                     </div>
-                    <div className="absolute top-0 left-0">
+                    <div className="absolute top-0 left-0 mx-5 mt-8 md:mx-0 md:mt-0">
                       <div className="flex justify-center text-white items-center text-sm bg-gray-400 w-8 h-8 ">
                         {index + 1}
                       </div>
                     </div>
-                    <div className="mt-2 text-black">
+                    <div className="mt-2 text-black my-5 mx-5">
                       <span className="font-extralight text-sm">
                         {item.category.name.toUpperCase()}
                       </span>
