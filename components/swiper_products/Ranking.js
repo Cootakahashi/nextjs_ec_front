@@ -115,8 +115,8 @@ export default function Ranking({ Rankingsections, onSelectComponent }) {
                     <div className="overflow-hidden relative h-[240px] w-[200px]  mx-3 mt-8 md:mx-0 md:mt-0">
                       <Image
                         className="hover:scale-125 transition-all duration-500"
-                        src={item.image}
-                        // src="/cloths/square/1.png"
+                        // src={item.image}
+                        src="/cloths/square/1.png"
                         fill
                         style={{ objectFit: "cover" }}
                         alt={`${item.name}`}
