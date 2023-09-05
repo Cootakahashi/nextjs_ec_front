@@ -119,10 +119,17 @@ export async function getStaticProps() {
   // 1から順番に並べ替え
   Rankingsections.sort((a, b) => a.ranking - b.ranking);
 
-  const NewProductSections = products
-    .filter((product) => product.new_product == true)
-    .slice(0, 8); //
-
+  // const NewProductSections = products
+  //   .filter((product) => product.new_product == true)
+  //   .slice(0, 8); //
+  const NewProductSections = Array.from({ length: 8 }).map((_, index) => ({
+    id: index + 1,
+    image: `/cloths/items/${index + 2}.jpg`,
+    category: {
+      name: `Category ${index + 1}`,
+    },
+    name: `Clothing Item ${index + 1}`,
+  }));
   const GridSecondSections = [
     {
       title: "GridSecond",
