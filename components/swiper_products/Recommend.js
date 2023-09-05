@@ -34,29 +34,29 @@ export default function Recommend({ Recommendsections, onSelectComponent }) {
     <div className="your-class md:py-28 pt-10 relative">
       {" "}
       {/* relative追加 */}
-      <header className="w-full text-slate-200 flex justify-content md:text-xs md:text-sm font-medium h-[46px] md:h-[55px] md:px-36 px-3 ">
+      <header className="w-full text-slate-200 flex justify-content md:text-xs md:text-sm font-medium h-[46px] md:h-[55px] md:px-36 px-1 ">
         <div className="flex w-full justify-between text-sm whitespace-nowrap">
           <button
-            className="flex-grow bg-slate-900 hover:bg-teal-400 transition-all h-full border-s-2 border-slate-200 px-3 md:px-0"
+            className="flex-grow bg-slate-900 hover:bg-teal-400 transition-all h-full border-s-2 border-slate-200 px-1 md:px-0"
             onClick={() => onSelectComponent("Ranking")}
           >
             人気アイテム
           </button>
           <button
-            className="flex-grow bg-teal-400 hover:bg-teal-400 transition-all h-full border-s-2 border-slate-200 px-3 md:px-0"
+            className="flex-grow bg-teal-400 hover:bg-teal-400 transition-all h-full border-s-2 border-slate-200 px-1 md:px-0"
             onClick={() => onSelectComponent("Recommend")}
           >
             スタッフオススメ
           </button>
           <button
-            className="flex-grow bg-slate-900 hover:bg-teal-400 transition-all h-full border-s-2 border-slate-200 px-3 md:px-0"
+            className="flex-grow bg-slate-900 hover:bg-teal-400 transition-all h-full border-s-2 border-slate-200 px-1 md:px-0"
             onClick={() => onSelectComponent("Sales")}
           >
             セールアイテム
           </button>
         </div>
       </header>
-      <div className="md:py-10 md:px-36 px-3 relative">
+      <div className="md:py-10 md:px-36 relative">
         {" "}
         {/* relative追加 */}
         <button className="swiper-button-prev-custom absolute left-0 top-1/2 transform -translate-y-1/2">
@@ -75,7 +75,7 @@ export default function Recommend({ Recommendsections, onSelectComponent }) {
             />
           </svg>
         </button>
-        <button className="swiper-button-next-custom absolute right-0 top-1/2 transform -translate-y-1/2">
+        <button className="swiper-button-next-custom">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -109,29 +109,39 @@ export default function Recommend({ Recommendsections, onSelectComponent }) {
                 <Link href={`/product/${item.id}`} passHref>
                   <div
                     className={`relative overflow-hidden ${
-                      index % 4 !== 3 ? "pr-3" : ""
-                    }`}
+                      index % 4 !== 3 ? "pr-3 sm:pr-4" : ""
+                    } group mb-4 sm:mb-6 mx-2`}
                   >
-                    <div className="overflow-hidden relative h-[240px] w-[200px]  mx-3 mt-8 md:mx-0 md:mt-0">
+                    <div className="overflow-hidden relative h-[210px] sm:h-[270px] w-[240px] sm:w-[270px] mt-8 transition-transform duration-300 group-hover:scale-105">
                       <Image
-                        className="hover:scale-125 transition-all duration-500"
-                        // src={item.image}
+                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-125"
                         src="/cloths/square/1.png"
-                        fill
-                        style={{ objectFit: "cover" }}
                         alt={`${item.name}`}
+                        fill
                       />
                     </div>
-                    <div className="absolute top-0 left-0 mx-5 mt-8 md:mx-0 md:mt-0">
-                      <div className="flex justify-center text-white items-center text-sm bg-gray-400 w-8 h-8 ">
-                        {index + 1}
-                      </div>
+                    <div
+                      className={`absolute top-4 left-4 text-white rounded-full w-8 h-8 flex items-center justify-center 
+        ${
+          index === 0
+            ? "bg-gold"
+            : index > 0 && index < 6
+            ? "bg-silver"
+            : "bg-copper"
+        }`}
+                    >
+                      {index + 1}
                     </div>
-                    <div className="mt-2 text-black my-5 mx-5">
-                      <span className="font-extralight text-sm">
-                        {item.category.name.toUpperCase()}
+
+                    {/* Text Section */}
+                    <div className="mt-4 px-2 sm:px-4">
+                      <span className="block font-medium text-sm text-slate-100 capitalize">
+                        {item.category.name}
                       </span>
-                      <h2 className="ml-1"> {item.name}</h2>
+                      <h2 className="text-lg font-semibold mt-1 sm:text-xl text-gray-200">
+                        {" "}
+                        {item.name}
+                      </h2>
                     </div>
                   </div>
                 </Link>

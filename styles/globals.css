@@ -9,7 +9,7 @@
 }
 
 .your-class {
-  background-image: url("/canva/middle/15.png");
+  background-image: url("/canva/head/9.jpg");
   /* 画像を要素全体にフィットさせるための設定 */
   background-size: cover;
   /* 画像を要素の中心に配置するための設定 */
@@ -48,18 +48,77 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 30px; /* 幅 */
-  height: 30px; /* 高さ */
-  /* background: #000; 背景色 */
-  color: #fff; /* テキスト色 */
+  background: rgba(0, 0, 0, 0.6); /* 半透明の背景 */
+  padding: 10px; /* パディングの追加 */
+  border-radius: 50%; /* 角を丸くする */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
+  transition: background 0.3s ease; /* 背景色のトランジション効果 */
 }
+
+.swiper-button-prev-custom:hover,
+.swiper-button-next-custom:hover {
+  background: rgba(0, 0, 0, 0.8); /* ホバー時に背景を少し暗くする */
+}
+
 .swiper-button-prev-custom {
-  left: 55px; /* 左側の位置 */
+  left: 55px;
 }
+
 .swiper-button-next-custom {
-  right: 55px; /* 右側の位置 */
+  right: 55px;
+}
+
+/* SVGアイコンのサイズと色の調整 */
+.swiper-button-prev-custom svg,
+.swiper-button-next-custom svg {
+  width: 20px; /* アイコンの幅の調整 */
+  height: 20px; /* アイコンの高さの調整 */
+  stroke: #fff; /* アイコンの色を白に変更 */
+}
+
+@media (max-width: 768px) {
+  .swiper-button-prev-custom,
+  .swiper-button-next-custom {
+    background: rgba(0, 0, 0, 0.6); /* 半透明の背景 */
+    padding: 8px; /* パディングの追加 */
+    width: auto; /* 幅を自動に設定 */
+    height: auto; /* 高さを自動に設定 */
+    transition: background 0.3s ease; /* 背景色のトランジション効果 */
+  }
+
+  .swiper-button-prev-custom:hover,
+  .swiper-button-next-custom:hover {
+    background: rgba(0, 0, 0, 0.8); /* ホバー時に背景を少し暗くする */
+  }
+
+  .swiper-button-prev-custom {
+    left: 0px;
+  }
+
+  .swiper-button-next-custom {
+    right: 0px;
+  }
+
+  /* SVGアイコンのサイズと色の調整 */
+  .swiper-button-prev-custom svg,
+  .swiper-button-next-custom svg {
+    width: 24px;
+    height: 24px;
+    stroke: #fff; /* アイコンの色を白に変更 */
+  }
+}
+
+.bg-gold {
+  background-color: #ffd700; /* gold color */
+}
+
+.bg-silver {
+  background-color: #c0c0c0; /* silver color */
+}
+
+.bg-copper {
+  background-color: #b87333; /* copper color */
 }

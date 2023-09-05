@@ -21,7 +21,6 @@ export default function Home({
   GridBrandSections,
   NewProductSections,
 }) {
-  console.log(NewProductSections);
   const [selectedComponent, setSelectedComponent] = useState("Ranking");
   const handleSelectComponent = (component) => {
     setSelectedComponent(component);
@@ -46,10 +45,11 @@ export default function Home({
 
   return (
     <div>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <Header />
       <Main sections={mainSections} />
       <Grid images={gridImages} />
+
       {selectedComponent === "Ranking" && (
         <Ranking
           Rankingsections={Rankingsections}
@@ -68,6 +68,7 @@ export default function Home({
           onSelectComponent={handleSelectComponent}
         />
       )}
+
       <Items products={NewProductSections} />
       <GridSecond sections={GridSecondSections} />
       <GridBrand sections={GridBrandSections} />
@@ -79,27 +80,25 @@ export default function Home({
 export async function getStaticProps() {
   const gridImages = {
     images: [
-      "/cloths/square/5.png",
-      "/cloths/wide/6.png",
-      "/cloths/wide/7.png",
-      "/cloths/wide/8.png",
+      "/cloths/new_square/1.jpg",
+      "/cloths/new_wide/2.jpg",
+      "/cloths/new_wide/3.jpg",
+      "/cloths/new_wide/4.jpg",
     ],
   };
 
   const mainSections = [
     {
       title: "New Arrivals",
-      images: Array.from({ length: 5 }, (_, i) => `/canva/middle/${i + 1}.png`),
+      images: Array.from({ length: 5 }, (_, i) => `/canva/head/${i + 1}.jpg`),
     },
     {
-      title: "Restocked",
-      images: Array.from({ length: 5 }, (_, i) => `/cloths/wide/${i + 1}.png`),
+      title: "New Arrivals responsive",
+      images_responsive: Array.from(
+        { length: 5 },
+        (_, i) => `/cloths/new_vertical/${i + 5}.jpg`
+      ),
     },
-    {
-      title: "Ranking",
-      images: Array.from({ length: 5 }, (_, i) => `/cloths/wide/${i + 1}.png`),
-    },
-    // Add more sections as needed
   ];
 
   const res = await fetch(
@@ -119,19 +118,21 @@ export async function getStaticProps() {
 
   // 1から順番に並べ替え
   Rankingsections.sort((a, b) => a.ranking - b.ranking);
+
   const NewProductSections = products
     .filter((product) => product.new_product == true)
     .slice(0, 8); //
+
   const GridSecondSections = [
     {
       title: "GridSecond",
       images: [
-        "/cloths/wide/5.png",
-        "/cloths/wide/15.png",
-        "/cloths/wide/11.png",
-        "/cloths/wide/20.png",
-        "/cloths/wide/16.png",
-        "/cloths/wide/13.png",
+        "/canva/head/11.jpg",
+        "/cloths/new_square/6.jpg",
+        "/cloths/new_square/7.jpg",
+        "/cloths/new_square/8.jpg",
+        "/cloths/new_square/9.jpg",
+        "/cloths/new_square/10.jpg",
       ],
     },
   ];

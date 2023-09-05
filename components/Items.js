@@ -9,18 +9,18 @@ export default function Items({ products }) {
         </h1>
         <h2 className="text-sm font-light tracking-wider">新着アイテム</h2>
       </div>
-      <div className="md:mx-36 mx-5">
-        <div className="grid md:grid-cols-4 grid-cols-2 gap-3 md:gap-2 justify-items-center">
+      <div className="md:mx-24 mx-3">
+        <div className="grid md:grid-cols-4 grid-cols-2 gap-2 md:gap-8 justify-items-center">
           {products.map((product, index) => (
             <Link href={`/product/${product.id}`} passHref key={index}>
               <div className="relative overflow-hidden">
                 <div className="text-slate-900 hover:text-slate-400 transition-all duration-500">
                   <div className="overflow-hidden">
                     <Image
-                      className="md:w-[235px] md:h-[300px] hover:scale-125 transition-all duration-500"
+                      className="mda:w-[235px] mda:h-[300px] hover:scale-125 transition-all duration-500"
                       src={product.image}
-                      width={235}
-                      height={300}
+                      width={350}
+                      height={550}
                       alt={`${product.category.name} product ${index + 1}`}
                     />
                   </div>

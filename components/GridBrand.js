@@ -23,45 +23,51 @@ export default function GridBrand({ sections }) {
       </header>
       <div className="col-span-full grid grid-cols-3 md:grid-cols-6">
         <div className="overflow-hidden">
-          <img
-            className=" object-cover hover:scale-125 transition duration-500 ease-in-out"
-            src="/cloths/square/5.png"
-            alt="Image 1"
+          <Image
+            src="/cloths/new_square/1.jpg"
+            width={300}
+            height={300}
+            alt="brand image"
           />
         </div>
         <div className="overflow-hidden">
-          <img
-            className=" object-cover hover:scale-125 transition duration-500 ease-in-out"
-            src="/cloths/square/2.png"
-            alt="Image 1"
+          <Image
+            src="/cloths/new_square/7.jpg"
+            width={300}
+            height={300}
+            alt="brand image"
           />
         </div>
         <div className="overflow-hidden">
-          <img
-            className=" object-cover hover:scale-125 transition duration-500 ease-in-out"
-            src="/cloths/square/7.png"
-            alt="Image 1"
+          <Image
+            src="/cloths/new_square/8.jpg"
+            width={300}
+            height={300}
+            alt="brand image"
           />
         </div>
         <div className="overflow-hidden">
-          <img
-            className=" object-cover hover:scale-125 transition duration-500 ease-in-out"
-            src="/cloths/square/13.png"
-            alt="Image 1"
+          <Image
+            src="/cloths/new_square/9.jpg"
+            width={300}
+            height={300}
+            alt="brand image"
           />
         </div>
         <div className="overflow-hidden">
-          <img
-            className=" object-cover hover:scale-125 transition duration-500 ease-in-out"
-            src="/cloths/square/9.png"
-            alt="Image 1"
+          <Image
+            src="/cloths/new_square/10.jpg"
+            width={300}
+            height={300}
+            alt="brand image"
           />
         </div>
         <div className="overflow-hidden">
-          <img
-            className=" object-cover hover:scale-125 transition duration-500 ease-in-out"
-            src="/cloths/square/11.png"
-            alt="Image 1"
+          <Image
+            src="/cloths/new_square/11.jpg"
+            width={300}
+            height={300}
+            alt="brand image"
           />
         </div>
       </div>
